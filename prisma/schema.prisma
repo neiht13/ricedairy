@@ -1,0 +1,174 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  email         String?
+  name          String?
+  image         String?
+  phone         String?
+  username      String     @unique
+  account       Account[]
+  password      String
+  mota          String?
+  dientich      Float?
+  masovungtrong String?
+  role          String[]
+  status        Boolean?
+  xId           String?
+  links         Link[]
+  QRconfig      QRconfig[]
+}
+
+model Account {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String?   @db.ObjectId
+  user        User?     @relation(fields: [userId], references: [id])
+  email       String    @unique
+  password    String
+  role        String[]
+  status      Boolean?
+  xId         String?
+  userCreated String?
+  dateCreated String?
+  userEdited  String?
+  dateEdited  String?
+  lastLogin   DateTime?
+}
+
+model Link {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  originalUrl String
+  shortUrl    String    @unique
+  totalView   Int
+  userCreated String?   @db.ObjectId
+  dateCreated DateTime?
+  lastView    DateTime?
+  user        User?     @relation(fields: [userCreated], references: [id])
+  qrconfig    QRconfig? @relation(fields: [qrconfigId], references: [id])
+  qrconfigId  String?   @db.ObjectId
+}
+
+model QRconfig {
+  id                  String  @id @default(auto()) @map("_id") @db.ObjectId
+  dotsOption          String?
+  cornersSquareOption String?
+  cornersDotOption    String?
+  cornersDotColor     String?
+  backgroundColor     String?
+  mainColor           String?
+  imageLogo           String?
+  link                Link[]
+  User                User?   @relation(fields: [userId], references: [id])
+  userId              String? @db.ObjectId
+}
+
+model Nongsan {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  manongsan      String?
+  tennongsan     String?
+  dientich       String?
+  ghichu         String?
+  chungnhan      String?
+  imageNongsan   String?
+  imageChungnhan String?
+}
+
+model Giaidoan {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  giaidoan    Int?
+  tengiaidoan String?
+  color       String?
+  ghichu      String?
+  stt         Int?
+  nhatkys     Nhatky[]
+  congviecs   Congviec[]
+}
+
+model Congviec {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  stt             Int?
+  tencongviec     String?
+  chitietcongviec String?
+  giaidoan        String?   @db.ObjectId
+  giaidoanObject  Giaidoan? @relation(fields: [giaidoan], references: [id])
+  ghichu          String?
+  chiphidvt       String?
+  nhatkys         Nhatky[]
+}
+
+model Donvitinh {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  stt       String?
+  donvitinh String?
+}
+
+model Loaiphanthuoc {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  loai          Int?
+  tenloai       String?
+  loaiphanthuoc String?
+  phan          Phanthuoc[]
+}
+
+model Phanthuoc {
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
+  stt             String?
+  tenphanthuoc    String?
+  ghichu          String?
+  loai            String?
+  loaiphanthuocId String?        @db.ObjectId
+  loaiphanthuoc   Loaiphanthuoc? @relation(fields: [loaiphanthuocId], references: [id])
+  nhatkys         Nhatky[]
+}
+
+model Nhatky {
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  stt             String?
+  loaiphan        String?
+  phanthuoc       String?    @db.ObjectId
+  tenphan         String?
+  loaithuoc       String?
+  tenthuoc        String?
+  date            String?
+  image           String?
+  muavu           String?
+  user            String?
+  chiphi          Int?
+  chitietcongviec String?
+  congviec        String?    @db.ObjectId
+  dvt             String?
+  giaidoan        String?    @db.ObjectId
+  giaidoanObject  Giaidoan?  @relation(fields: [giaidoan], references: [id])
+  congviecObject  Congviec?  @relation(fields: [congviec], references: [id])
+  phanthuocObject Phanthuoc? @relation(fields: [phanthuoc], references: [id])
+  ngaycapnhat     String?
+  soluong         Int?
+  tencongviec     String?
+  thanhtien       Int?
+  ghichu          String?
+  year            String?
+}
+
+model Muavu {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  muavu      String?
+  nam        String?
+  ngaybatdau String?
+  phuongphap String?
+  giong      String?
+  dientich   Float?
+  soluong    Float?
+  stt        String?
+  ghichu     String?
+  user       String
+}
