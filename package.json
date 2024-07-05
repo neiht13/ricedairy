@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "prisma generate && next dev",
     "build": "prisma generate && next build",
-    "start": "next start -p 8888",
+    "start": "next start -p 8889",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start -p 3001"
@@ -52,6 +52,7 @@
     "@vercel/og": "^0.0.21",
     "autoprefixer": "^10.4.18",
     "axios": "^1.6.7",
+    "basic-ftp": "^5.0.5",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",

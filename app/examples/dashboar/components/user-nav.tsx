@@ -16,17 +16,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {signOut, useSession} from "next-auth/react";
 // @ts-ignore
-import md5 from "md5"
 export function UserNav() {
   const {data: session} = useSession()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-xl">
-          <Avatar className="h-8 w-8">
+        <Button className="relative h-8 w-8 rounded-xl">
+          {/* <Avatar className="h-8 w-8">
             <AvatarImage src={'https://www.gravatar.com/avatar/' + md5(session?.user?.email) + '?s=200'} alt="@thein" />
             <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
+          </Avatar> */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>

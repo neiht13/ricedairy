@@ -1,8 +1,6 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -32,7 +30,6 @@ import { useSession } from "next-auth/react"
 const ProfileForm = ({data}) =>{
 	const {data: session, status} = useSession();
 
-	console.log('data', data)
 	const form = useForm({
 		defaultValues: {...data, year: '2024'},
 	})
