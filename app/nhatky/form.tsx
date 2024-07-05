@@ -25,6 +25,8 @@ import {findAll} from "@/app/thongtinchung/giaidoan/actions";
 import {findAllCongviec, findAllMuavu} from "@/app/thongtinchung/muavu/actions";
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { toast } from "@/components/ui/use-toast"
 
 
 const ProfileForm = ({data}) =>{
@@ -58,14 +60,28 @@ const ProfileForm = ({data}) =>{
 	// const muavua = await findAllMuavu();
 	const [file, setFile] = useState()
 	const [tenBenh, setTenBenh] = useState("")
+	const router = useRouter()	
 	// 2. Define a submit handler.
-	function onSubmit(values) {
+	async function onSubmit(values) {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		console.log('values',values)
 		console.log('values',date)
-		createNhatky({...values, user: session?.user?.username, date: dayjs(date).format("DD/MM/YYYY"), soluong: parseInt(values.soluong), chiphi: parseInt(values.chiphi)
+		const res = await createNhatky({...values, user: session?.user?.username, date: dayjs(date).format("DD/MM/YYYY"), soluong: parseInt(values.soluong), chiphi: parseInt(values.chiphi)
 		})
+		if (res) {
+			toast({
+			  title: "OK",
+			  description: "Lưu thành công.",
+			})
+			router.push('/')
+		  }
+		  else {
+			toast({
+			  title: "Error",
+			  description: "Lưu thất bại.",
+			})
+		  }
 	}
 	// @ts-ignore
 	const uploadImage = async (e) => {

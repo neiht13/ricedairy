@@ -7,11 +7,18 @@ import prisma from "@/prisma/prisma";
 // @ts-ignore
 export const createNhatky = async (req) => {
 	// @ts-ignore
-	const data = await prisma.nhatky.create({
-		data: req
-	})
-	return data
+	try {
+		const data = await prisma.nhatky.create({
+			data: req
+		})
+		return data
+	}
+	 catch (e) {
+		return null
+	}
+
 }
+
 
 // @ts-ignore
 export const updateNhatky = async (req) => {
