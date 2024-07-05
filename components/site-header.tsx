@@ -31,7 +31,7 @@ export function SiteHeader() {
           {/*  <CommandMenu />*/}
           {/*</div>*/}
           <nav className="flex items-center align-middle  ">
-            {session?.user?.email ? <UserNav/>:
+            {session?.user?.username ? <UserNav/>:
             <Link
               href="/login"
               rel="noreferrer"

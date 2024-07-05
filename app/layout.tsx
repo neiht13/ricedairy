@@ -14,7 +14,7 @@ import {Toaster as DefaultToaster} from "@/registry/default/ui/toaster"
 import {Toaster as NewYorkSonner} from "@/components/ui/sonner"
 import {Toaster as NewYorkToaster} from "@/components/ui/toaster"
 import SessionProvider from "@/hooks/provider"
-import {Button} from "@/components/ui/button";
+import {AuthProvider} from "@/app/authContext";
 import {
     Bird,
     Book,
@@ -119,6 +119,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                 {/*<div className="relative overflow-hidden before:absolute before:top-0 before:bg-[url('https://preline.co/assets/svg/examples/squared-bg-element.svg')]  before:bg-top before:size-full before:-z-[1] before:transform  dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/squared-bg-element.svg')]">*/}
 
             <SessionProvider>
+                <AuthProvider>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
@@ -140,6 +141,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                     <DefaultToaster/>
                     <NewYorkSonner/>
                 </ThemeProvider>
+                </AuthProvider>
             </SessionProvider>
             {/*</div>*/}
             </body>

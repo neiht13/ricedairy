@@ -15,9 +15,7 @@ export default  function AuthenticationPage() {
     <>
       <div className="container relative h-[100vh] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
 
-        <div className="hidden relative bg-gradient-to-r from-blue-500 via-teal-600 to-sky-500 h-full flex-col bg-muted p-10 text-white md:flex dark:border-r">
-          <div className=" sabsolute inset-0 bg-gradient-to-r from-blue-500 via-teal-600 to-sky-500 " />
-        </div>
+        
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
@@ -25,7 +23,7 @@ export default  function AuthenticationPage() {
                 Đăng nhập
               </h1>
               <p className="text-sm text-muted-foreground">
-                Sử dụng email đã đăng ký
+                Sử dụng tài khoản đã đăng ký
               </p>
             </div>
             <UserAuthForm />

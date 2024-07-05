@@ -26,28 +26,38 @@ import {FileInput} from "lucide-react";
 import {findAll} from "@/app/thongtinchung/giaidoan/actions";
 import {findAllCongviec, findAllMuavu} from "@/app/thongtinchung/muavu/actions";
 import dayjs from "dayjs";
+import { useSession } from "next-auth/react"
 
 
 const ProfileForm = ({data}) =>{
+	const {data: session, status} = useSession();
+
 	console.log('data', data)
 	const form = useForm({
-		defaultValues: data,
+		defaultValues: {...data, year: '2024'},
 	})
 	// const giaidoan = []
 	const [giaidoan, setGiaidoan] = useState([])
 	const [muavu, setMuavu] = useState([])
+	const [congviecList, setCongviecList] = useState([])
 	const [congviec, setCongviec] = useState([])
+	const [giaidoanId, setGiaidoanId] = useState('')
+
 	const fetchData = async () => {
 		const g = await findAll();
 		setGiaidoan(g)
 		const m = await findAllMuavu();
 		setMuavu(m)
 		const c = await findAllCongviec();
-		setCongviec(c)
+		setCongviecList(c)
 	}
 	useEffect(() => {
 		fetchData()
 	}, []);
+	useEffect(() => {
+		const c = congviecList.filter(g=>g?.giaidoan === giaidoanId)
+		setCongviec(c);
+	}, [giaidoanId]);
 	// const muavua = await findAllMuavu();
 	const [file, setFile] = useState()
 	const [tenBenh, setTenBenh] = useState("")
@@ -57,7 +67,7 @@ const ProfileForm = ({data}) =>{
 		// ✅ This will be type-safe and validated.
 		console.log('values',values)
 		console.log('values',date)
-		createNhatky({...values, date: dayjs(date).format("DD/MM/YYYY"), chiphi: parseInt(values.chiphi)
+		createNhatky({...values, user: session?.user?.username, date: dayjs(date).format("DD/MM/YYYY"), soluong: parseInt(values.soluong), chiphi: parseInt(values.chiphi)
 		})
 	}
 	// @ts-ignore
@@ -108,11 +118,11 @@ const ProfileForm = ({data}) =>{
 
 			<FormField
 					control={form.control}
-					name="nam"
+					name="year"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Chọn năm </FormLabel>
-							<Select onValueChange={field.onChange} defaultValue={'2024'}>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
 									<SelectTrigger className="h-12 text-lg">
 										<SelectValue placeholder="Chọn năm" />
@@ -159,9 +169,9 @@ const ProfileForm = ({data}) =>{
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Giai đoạn </FormLabel>
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
+							<Select onValueChange={value=> {field.onChange(value), setGiaidoanId(value)}}  defaultValue={field.value}>
 								<FormControl>
-									<SelectTrigger className="h-12 text-lg">
+									<SelectTrigger className="h-12 text-lg w-[80vw]">
 										<SelectValue placeholder="Chọn giai đoạn" />
 									</SelectTrigger>
 								</FormControl>
@@ -192,7 +202,7 @@ const ProfileForm = ({data}) =>{
 								</FormControl>
 								<SelectContent>
 									{
-										congviec.filter(item => item.giaidoan === form.getValues()?.giaidoan).map(g=>(
+										congviec.map(g=>(
 											<SelectItem value={g?.id}>{g?.tencongviec}</SelectItem>
 										))
 									}
@@ -203,7 +213,7 @@ const ProfileForm = ({data}) =>{
 					)}
 				/>
 
-
+{/* 
 				<FormField
 					control={form.control}
 					name="tencongviec"
@@ -232,8 +242,21 @@ const ProfileForm = ({data}) =>{
 						</FormItem>
 					)}
 				/>
-				
+				 */}
 
+				<FormField
+					control={form.control}
+					name="tenphan"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Tên phân </FormLabel>
+							<FormControl>
+								<Input {...field} className="text-lg" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 				<FormField
 					control={form.control}
 					name="tenthuoc"

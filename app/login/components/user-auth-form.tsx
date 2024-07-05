@@ -23,7 +23,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       e.preventDefault();
       setIsLoading(true)
       const sg = await signIn('credentials', {
-        ...form,
+        username: form.username.toLowerCase(),
+        password: form.password,
         redirect: false
       });
 

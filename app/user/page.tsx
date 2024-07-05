@@ -110,7 +110,7 @@ export default function Dashboard() {
 							<TabsList>
 								<TabsTrigger value="all">Thông tin</TabsTrigger>
 								<TabsTrigger value="active">Đổi MK</TabsTrigger>
-								<TabsTrigger value="dsnd">DS người dùng</TabsTrigger>
+								{/* <TabsTrigger value="dsnd">DS người dùng</TabsTrigger> */}
 							</TabsList>
 							<div className="ml-auto flex items-center gap-2">
 
