@@ -229,6 +229,30 @@ const Header = () => {
 							</div>
 							Phân thuốc
 						</Link>
+						
+						<Link
+							href={"/thongke"}
+							onClick={() => {
+								setActiveLink("/thongke");
+							}}
+							className={
+								"mx-1 sm:mx-2 px-3 sm:px-4 py-2 flex flex-col items-center text-xs border-t-2 transition-all " +
+								(activeLink === "/thongke"
+									? "  border-orange-500 text-orange-500"
+									: " border-transparent ")
+							}
+						>
+							<div
+								className={
+									(activeLink === "/thongke"
+										? "  transform scale-125 "
+										: " ")
+								}
+							>
+								<IconMenuCharts/>
+							</div>
+							Thống kê
+						</Link>
 
 						<Link
 							href={"/user"}
