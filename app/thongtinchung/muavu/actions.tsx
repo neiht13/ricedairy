@@ -54,3 +54,10 @@ export const findAllMuavu = async () => {
 	const data = await prisma.muavu.findMany()
 	return data
 }
+
+
+export const findAllCongviec = async () => {
+	// @ts-ignore
+	const data = await prisma.congviec.findMany()
+	return data
+}

@@ -24,7 +24,7 @@ import {createNhatky} from "@/app/nhatky/actions";
 import {FileUploader, FileUploaderContent, FileUploaderItem} from "@/components/ui/file-uploader";
 import {FileInput} from "lucide-react";
 import {findAll} from "@/app/thongtinchung/giaidoan/actions";
-import {findAllMuavu} from "@/app/thongtinchung/muavu/actions";
+import {findAllCongviec, findAllMuavu} from "@/app/thongtinchung/muavu/actions";
 import dayjs from "dayjs";
 
 
@@ -36,11 +36,14 @@ const ProfileForm = ({data}) =>{
 	// const giaidoan = []
 	const [giaidoan, setGiaidoan] = useState([])
 	const [muavu, setMuavu] = useState([])
+	const [congviec, setCongviec] = useState([])
 	const fetchData = async () => {
 		const g = await findAll();
 		setGiaidoan(g)
 		const m = await findAllMuavu();
 		setMuavu(m)
+		const c = await findAllCongviec();
+		setCongviec(c)
 	}
 	useEffect(() => {
 		fetchData()
@@ -98,39 +101,34 @@ const ProfileForm = ({data}) =>{
 		// Other options...
 	};
 
-	const [date, setDate] = useState()
+	const [date, setDate] = useState(new Date())
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-				<FormField
-					control={form.control}
-					name="tencongviec"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Tên công việc</FormLabel>
-							<FormControl>
-								<Input  {...field} />
-							</FormControl>
-							<FormDescription>
-							</FormDescription>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="chitietcongviec"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Chi tiết công việc </FormLabel>
-							<FormControl>
-								<Input  {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
 
+			<FormField
+					control={form.control}
+					name="nam"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Chọn năm </FormLabel>
+							<Select onValueChange={field.onChange} defaultValue={'2024'}>
+								<FormControl>
+									<SelectTrigger className="h-12 text-lg">
+										<SelectValue placeholder="Chọn năm" />
+									</SelectTrigger>
+								</FormControl>
+								<SelectContent>
+											<SelectItem value={'2023'}>{2023}</SelectItem>
+											<SelectItem value={'2024'}>{2024}</SelectItem>
+											<SelectItem value={'2025'}>{2025}</SelectItem>
+							
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 				<FormField
 					control={form.control}
 					name="muavu"
@@ -139,14 +137,14 @@ const ProfileForm = ({data}) =>{
 							<FormLabel>Chọn mùa vụ </FormLabel>
 							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<SelectTrigger className="h-12">
+									<SelectTrigger className="h-12 text-lg">
 										<SelectValue placeholder="Chọn mùa vụ" />
 									</SelectTrigger>
 								</FormControl>
 								<SelectContent>
 									{
 										muavu.map(g=>(
-											<SelectItem value={g.id}>{g.nam + " - " + g.muavu}</SelectItem>
+											<SelectItem value={g.id}>{g.muavu}</SelectItem>
 										))
 									}
 								</SelectContent>
@@ -163,7 +161,7 @@ const ProfileForm = ({data}) =>{
 							<FormLabel>Giai đoạn </FormLabel>
 							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<SelectTrigger className="h-12">
+									<SelectTrigger className="h-12 text-lg">
 										<SelectValue placeholder="Chọn giai đoạn" />
 									</SelectTrigger>
 								</FormControl>
@@ -182,12 +180,68 @@ const ProfileForm = ({data}) =>{
 
 				<FormField
 					control={form.control}
+					name="congviec"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Công việc </FormLabel>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<FormControl>
+									<SelectTrigger className="h-12 text-lg">
+										<SelectValue placeholder="Chọn công việc" />
+									</SelectTrigger>
+								</FormControl>
+								<SelectContent>
+									{
+										congviec.filter(item => item.giaidoan === form.getValues()?.giaidoan).map(g=>(
+											<SelectItem value={g?.id}>{g?.tencongviec}</SelectItem>
+										))
+									}
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+
+				<FormField
+					control={form.control}
+					name="tencongviec"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Tên công việc</FormLabel>
+							<FormControl>
+								<Input  {...field} className="text-lg" />
+							</FormControl>
+							<FormDescription>
+							</FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="chitietcongviec"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Chi tiết công việc </FormLabel>
+							<FormControl>
+								<Input  {...field} className="text-lg" />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				
+
+				<FormField
+					control={form.control}
 					name="tenthuoc"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Tên thuốc </FormLabel>
 							<FormControl>
-								<Input  {...field} />
+								<Input  {...field} className="text-lg" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -201,7 +255,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel>Số lượng </FormLabel>
 							<FormControl>
-								<Input type={'number'} {...field} />
+								<Input type={'number'} {...field} className="text-lg" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -215,7 +269,7 @@ const ProfileForm = ({data}) =>{
 							<FormLabel>Đơn vị tính </FormLabel>
 							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<SelectTrigger className="h-12">
+									<SelectTrigger className="h-12 text-lg">
 										<SelectValue placeholder="Chọn Đơn vị" />
 									</SelectTrigger>
 								</FormControl>
@@ -240,7 +294,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel>Chi phí </FormLabel>
 							<FormControl>
-								<Input type='number'  {...field} />
+								<Input type='number'  {...field}  className="text-lg"/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -254,7 +308,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel>Ngày thực hiện </FormLabel>
 							<FormControl>
-								<DatePickerDemo date={date} setDate={setDate}/>
+								<DatePickerDemo date={date} setDate={setDate} className="text-lg"/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -268,7 +322,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel>Ghi chú </FormLabel>
 							<FormControl>
-								<Textarea  {...field} />
+								<Textarea  {...field}  className="text-lg"/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -281,7 +335,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel htmlFor="picture">Hình ảnh</FormLabel>
 							<FormControl>
-								<Input id="picture" type="file" />
+								<Input id="picture" type="file" className="text-lg" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

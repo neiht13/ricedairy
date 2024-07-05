@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 const TimelinePage = ({}) => {
 	const [data, setData] = useState([])
 
-	const {data: session} = useSession()
+	const {data: session, status} = useSession()
 	const fetchData = async () => {
-		const d = await findAll(session?.user?.username)
+		const d = status === 'authenticated' &&  await findAll(session?.user?.username) || []
 		setData(d)
 	}
 	useEffect(() => {
