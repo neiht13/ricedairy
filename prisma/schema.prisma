@@ -20,6 +20,7 @@ model User {
   account       Account[]
   password      String
   mota          String?
+  diachi        String?
   dientich      Float?
   masovungtrong String?
   role          String[]

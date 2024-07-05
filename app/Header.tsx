@@ -206,7 +206,7 @@ const Header = () => {
 							</div>
 							Danh mục
 						</Link>
-						<Link
+						{/* <Link
 							href={"/phanthuoc"}
 							onClick={() => {
 								setActiveLink("/phanthuoc");
@@ -228,7 +228,7 @@ const Header = () => {
 								<IconMenuElements/>
 							</div>
 							Phân thuốc
-						</Link>
+						</Link> */}
 						
 						<Link
 							href={"/thongke"}

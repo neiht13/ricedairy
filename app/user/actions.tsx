@@ -21,7 +21,7 @@ export const updateUser = async (user) => {
 	// @ts-ignore
 	const data = await prisma.user.update({
 		data: user,
-		where: id
+		where: {id}
 	}
 	)
 	return data

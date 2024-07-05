@@ -69,6 +69,7 @@ import MusicPage from "@/app/examples/music/page";
 import Timeline from "@/app/thongtinchung/muavu/components";
 import GiaidoanPage from "@/app/thongtinchung/giaidoan/components";
 import CongviecPage from "@/app/thongtinchung/congviec/components";
+import PhanthuocPage from "../phanthuoc/page"
 
 export default function Dashboard() {
 	return (
@@ -95,6 +96,8 @@ export default function Dashboard() {
 								<TabsTrigger value="all">Mùa vụ</TabsTrigger>
 								<TabsTrigger value="active">Giai đoạn</TabsTrigger>
 								<TabsTrigger value="draft">Công việc</TabsTrigger>
+								<TabsTrigger value="phanthuoc">Phân thuốc</TabsTrigger>
+
 							</TabsList>
 						</div>
 						<TabsContent value="all">
@@ -194,6 +197,16 @@ export default function Dashboard() {
 								</CardHeader>
 								<CardContent>
 									<CongviecPage/>
+								</CardContent>
+								<CardFooter>
+
+								</CardFooter>
+						</Card>
+						</TabsContent>
+						<TabsContent value={"phanthuoc"}>
+							<Card className="sm:col-span-2">
+								<CardContent>
+									<PhanthuocPage/>
 								</CardContent>
 								<CardFooter>
 
