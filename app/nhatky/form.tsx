@@ -371,7 +371,7 @@ const ProfileForm = ({data}) =>{
 						<FormItem>
 							<FormLabel htmlFor="picture">Hình ảnh</FormLabel>
 							<FormControl>
-								<Input id="picture" type="file" className="text-lg" />
+								<Input id="picture" type="file" onChange={uploadImage} className="text-lg" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

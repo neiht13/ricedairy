@@ -12,29 +12,23 @@ datasource db {
 
 model User {
   id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  username      String     @unique
   email         String?
   name          String?
   image         String?
   phone         String?
-  username      String     @unique
-  account       Account[]
-  password      String
   mota          String?
   diachi        String?
   dientich      Float?
+  sothua        Float?
+  donvihtx      String?
+  vitri         String?
   masovungtrong String?
-  role          String[]
-  status        Boolean?
-  xId           String?
-  links         Link[]
-  QRconfig      QRconfig[]
 }
 
 model Account {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String?   @db.ObjectId
-  user        User?     @relation(fields: [userId], references: [id])
-  email       String    @unique
+  username    String?    
   password    String
   role        String[]
   status      Boolean?
@@ -44,33 +38,6 @@ model Account {
   userEdited  String?
   dateEdited  String?
   lastLogin   DateTime?
-}
-
-model Link {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  originalUrl String
-  shortUrl    String    @unique
-  totalView   Int
-  userCreated String?   @db.ObjectId
-  dateCreated DateTime?
-  lastView    DateTime?
-  user        User?     @relation(fields: [userCreated], references: [id])
-  qrconfig    QRconfig? @relation(fields: [qrconfigId], references: [id])
-  qrconfigId  String?   @db.ObjectId
-}
-
-model QRconfig {
-  id                  String  @id @default(auto()) @map("_id") @db.ObjectId
-  dotsOption          String?
-  cornersSquareOption String?
-  cornersDotOption    String?
-  cornersDotColor     String?
-  backgroundColor     String?
-  mainColor           String?
-  imageLogo           String?
-  link                Link[]
-  User                User?   @relation(fields: [userId], references: [id])
-  userId              String? @db.ObjectId
 }
 
 model Nongsan {
@@ -85,27 +52,37 @@ model Nongsan {
 }
 
 model Giaidoan {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
   giaidoan    Int?
   tengiaidoan String?
   color       String?
   ghichu      String?
   stt         Int?
   nhatkys     Nhatky[]
-  congviecs   Congviec[]
+  congviecs   GiaidoanCongviec[]
 }
 
 model Congviec {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
   stt             Int?
   tencongviec     String?
   chitietcongviec String?
-  giaidoan        String?   @db.ObjectId
-  giaidoanObject  Giaidoan? @relation(fields: [giaidoan], references: [id])
   ghichu          String?
   chiphidvt       String?
   nhatkys         Nhatky[]
+  giaidoans       GiaidoanCongviec[]
 }
+
+model GiaidoanCongviec {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  giaidoanId String
+  congviecId String
+  giaidoan   Giaidoan @relation(fields: [giaidoanId], references: [id])
+  congviec   Congviec @relation(fields: [congviecId], references: [id])
+
+  @@unique([giaidoanId, congviecId])
+}
+
 
 model Donvitinh {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -169,7 +146,18 @@ model Muavu {
   giong      String?
   dientich   Float?
   soluong    Float?
+  giagiong   Float? 
   stt        String?
   ghichu     String?
+  user       String
+}
+
+model Thuhoach {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  muavuId    String? @db.ObjectId
+  ngaythuhoach String?
+  tongthuhoach String?
+  giaban      String?
+  noithuhoach String?
   user       String
 }
