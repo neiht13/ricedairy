@@ -1,6 +1,6 @@
+import { da } from "date-fns/locale";
 import { authMiddleware } from "../../../middleware/auth";
-import clientPromise from "../../../mongo/client";
-import { ObjectId } from "mongodb";
+import prisma from "../../../prisma/prisma";
 
 const handler = async (req, res) => {
   const data = req.body;
@@ -8,34 +8,41 @@ const handler = async (req, res) => {
   let result = {};
 
   try {
-    const { db} = await clientPromise;
-    const collection = db.collection("Nhatky");
-
     switch (req.method) {
       case "POST":
         if (!id) {
-          result = await collection.insertOne(data);
-          res.status(201).json(result.ops[0]);
+          result = await prisma.nhatky.create({ data });
+          res.status(201).json(result);
         } else {
-          result = await collection.updateOne(
-            { _id: ObjectId.createFromHexString(id) },
-            { $set: data }
-          );
+          result = await prisma.nhatky.update({
+            where: { id },
+            data,
+          });
           res.status(201).json(result);
         }
         break;
       case "GET":
         if (!id) {
-          result = await collection.find({}).limit(10).toArray();
+          result = await prisma.nhatky.findMany({
+            take: 10,
+          });
           res.status(200).json(result);
         } else {
-          result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
+          result = await prisma.nhatky.findUnique({
+            where: {
+              id,
+            },
+          });
           res.status(200).json(result);
         }
         break;
       case "DELETE":
         if (id) {
-          result = await collection.deleteOne({ _id: ObjectId.createFromHexString(id) });
+          result = await prisma.nhatky.delete({
+            where: {
+              id,
+            },
+          });
           res.status(200).json(result);
         } else {
           res.status(200).end(`Provide id`);
