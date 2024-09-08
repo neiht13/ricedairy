@@ -39,10 +39,6 @@ export const findOneMuavu = async (id) => {
 }
 export const findAll = async () => {
 	// @ts-ignore
-	const data = await prisma.congviec.findMany({
-		include: {
-			giaidoanObject: true
-		}
-	})
+	const data = await prisma.congviec.findMany()
 	return data
 }
