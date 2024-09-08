@@ -2,7 +2,7 @@ import { parse } from "@/lib/middleware/utils";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 import { unstable_getServerSession } from "next-auth/next"
-import {authOptions} from "@/pages/api/auth/[...nextauth]";
+import {authOptions} from "@/pages/api/authnext/[...nextauth]";
 
 export default async function AppMiddleware(req: NextRequest) {
   const { path, fullPath } = parse(req);

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 // @ts-ignore
 import prisma from "@/prisma/prisma";
 import {getServerSession} from "next-auth";
-import {authOptions} from "@/pages/api/auth/[...nextauth]";
+import {authOptions} from "@/pages/api/authnext/[...nextauth]";
 import dayjs from "dayjs";
 
 

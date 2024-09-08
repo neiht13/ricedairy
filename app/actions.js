@@ -2,7 +2,7 @@
 
 import prisma  from "../prisma/prisma";
 import {getServerSession} from "next-auth";
-import {authOptions} from "@/pages/api/auth/[...nextauth]";
+import {authOptions} from "@/pages/api/authnext/[...nextauth]";
 
 export const getAllLink = async (shortUrl) => {
 	const session = await getServerSession(authOptions)
