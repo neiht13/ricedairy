@@ -22,6 +22,9 @@ const handler = async (req, res) => {
             { $set: data }
           );
           res.status(201).json(result);
+
+          console.log(result, 'result');
+          
         }
         break;
       case "GET":

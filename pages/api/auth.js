@@ -8,8 +8,8 @@ const SECRET_KEY = process.env.JWT_SECRET;
 export default async function handler(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors);
-  console.log(req.method);
-  console.log(req.body);
+  // console.log(req.method);
+  // console.log(req.body);
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
