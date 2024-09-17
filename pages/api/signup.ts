@@ -6,6 +6,21 @@ import {authOptions} from "@/pages/api/authnext/[...nextauth]";
 import dayjs from "dayjs";
 
 
+/**
+ * @swagger
+ * /api/example:
+ *   get:
+ *     description: Returns a list of items
+ *     responses:
+ *       200:
+ *         description: A successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ */
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse

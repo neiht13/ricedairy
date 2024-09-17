@@ -22,7 +22,7 @@ const handler = async (req, res) => {
 
   try {
     const { db} = await clientPromise;
-    const collection = db.collection("Giaidoan");
+    const collection = db.collection("congviecnew");
 
     switch (req.method) {
       case "POST":

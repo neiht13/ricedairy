@@ -1,35 +1,71 @@
-import prisma from "../../../prisma/prisma";
-import { runMiddleware } from '../../../middleware/cors';
-import cors from '../../../middleware/cors';
-import jwt from 'jsonwebtoken';
+import {authMiddleware} from "../../../middleware/auth";
+import {ObjectId} from "mongodb";
+import clientPromise from "../../../mongo/client";
+// POST handler
+const handlePost = async (req, res, collection) => {
+  const data = req.body;
+  const id = data?.id;
+  delete data.id;
 
-const SECRET_KEY = process.env.JWT_SECRET;
-async function handler(req, res) {
-    runMiddleware(req, res, cors);
-    const token = req.headers.authorization?.split(" ")[1];
-    if (token) {
-      try {
-      const decoded = jwt.verify(token, SECRET_KEY);
-      console.log("decoded", decoded);
-      if(decoded.role !== 'admin') {
-        req.user = decoded;
-        if (req.method === "GET") {
-          const users = await prisma.user.findMany();
-          console.log("users", users);
-          res.status(200).json({ data: users });
-        } else {
-          res.status(405).json({ message: "Method not allowed" });
-        }
-      }
-      
-    } catch (error) {
-      console.log("error", error.message);
-      res.status(200).json({ message: 'Vui lòng đăng nhập!' });
-    }
+  if (!id) {
+    const result = await collection.insertOne(data);
+    res.status(201).json(result.ops[0]);
   } else {
-    res.status(401).json({ message: 'Vui lòng đăng nhập!' });
+    const result = await collection.updateOne(
+      { _id: ObjectId.createFromHexString(id) },
+      { $set: data }
+    );
+    res.status(201).json(result);
   }
+};
 
-}
-  
-  export default handler;
+// GET handler
+const handleGet = async (req, res, collection) => {
+  const idQuery = req.query?.id;
+  console.log('idQuery', idQuery)
+  if (idQuery) {
+    const result = await collection.findOne({ accountId: idQuery });
+    res.status(200).json([result]);
+  } else {
+    const result = await collection.find({}).toArray();
+    res.status(200).json(result);
+  }
+};
+
+// DELETE handler
+const handleDelete = async (req, res, collection) => {
+  const idQuery = req.query?.id;
+
+  if (idQuery) {
+    const result = await collection.deleteOne({ _id: ObjectId.createFromHexString(idQuery) });
+    res.status(200).json(result);
+  } else {
+    res.status(400).send("Provide id");
+  }
+};
+
+// Main handler
+const handler = async (req, res) => {
+  try {
+    const { db } = await clientPromise;
+    const collection = db.collection("User");
+
+    switch (req.method) {
+      case "POST":
+        await handlePost(req, res, collection);
+        break;
+      case "GET":
+        await handleGet(req, res, collection);
+        break;
+      case "DELETE":
+        await handleDelete(req, res, collection);
+        break;
+      default:
+        res.status(404).end("Not Found");
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export default authMiddleware(handler);

@@ -6,29 +6,34 @@ import dayjs from "dayjs";
 import {SaveAllIcon} from "lucide-react";
 import {Button} from "../../components/ui/button";
 import Notfound from "./notfound";
+import Timeline from "../../pages/ai";
 
 const HomePage = async ({params}) => {
-	const short = params.link;
+	// const short = params.link;
+	//
+	// const d = await prisma.link.findUnique({
+	// 	where: {
+	// 		shortUrl: short
+	// 	},
+	// })
+	// const link = d?.originalUrl;
+	// if (link) {
+	// 	await prisma.link.update({data: {
+	// 			totalView: d?.totalView + 1,
+	// 			lastView: dayjs()
+	// 		}, where: {id: d?.id}})
+	// 	await redirect(link); // Chuyển hướng sang trang mới
+	// } else {
+	// 	// @ts-ignore
+	//
+	// 	return (
+	// 		<Timeline/>
+	// 	);
+	// }
 
-	const d = await prisma.link.findUnique({
-		where: {
-			shortUrl: short
-		},
-	})
-	const link = d?.originalUrl;
-	if (link) {
-		await prisma.link.update({data: {
-				totalView: d?.totalView + 1,
-				lastView: dayjs()
-			}, where: {id: d?.id}})
-		await redirect(link); // Chuyển hướng sang trang mới
-	} else {
-		// @ts-ignore
-
-		return (
-			<Notfound/>
-		);
-	}
+	return (
+		<Timeline/>
+	);
 };
 
 export default HomePage;
