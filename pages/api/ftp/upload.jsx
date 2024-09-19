@@ -1,7 +1,7 @@
 // pages/api/uploadImage.js
 import { getFtpClient, closeFtpClient } from './ftp-client';
 import {PassThrough, Readable} from "stream";
-import fs, {createReadStream} from "fs";
+import {authMiddleware} from "../../../middleware/auth";
 
 function generateRandomNumber() {
 	const randomNumber = Math.floor(Math.random() * 100000000);
@@ -9,12 +9,12 @@ function generateRandomNumber() {
 	return formattedNumber;
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
 	const { imageName, imageData } = req.body;
 	const randomText = generateRandomNumber();
 	const client = await getFtpClient();
 	try {
-		const remotePath = randomText+ imageName; // Đường dẫn trên FTP server
+		const remotePath = imageName; // Đường dẫn trên FTP server
 		const data = 	imageData.replace(/^data:image\/\w+;base64,/, '');
 		const imageBuffer = Buffer.from(data, 'base64');
 		const imageStream = new PassThrough();
@@ -28,3 +28,6 @@ export default async function handler(req, res) {
 		await closeFtpClient(client);
 	}
 }
+
+export default authMiddleware(handler);
+

@@ -68,15 +68,17 @@ export default async function handler(req, res) {
     }
 
     const { db } = await clientPromise;
-    const collection = db.collection("Account");
+    const acocuntdb = db.collection("accountnew");
+    const userdb = db.collection("usernew");
+    const account = await acocuntdb.findOne(whereClause);
 
-    let user = await collection.findOne(whereClause);
-      console.log(user); // Log or process the user object as needed
+    const usernew = await userdb.findOne({accountId: account._id.toString()});
+
   // Giả sử username và password đúng
-    if (user && password === user.password) {
-      const token = jwt.sign({ username, role: user.role[0] }, SECRET_KEY, { expiresIn: '69y' });
+    if (account && password === account.password) {
+      const token = jwt.sign({ username, role: account.role[0] }, SECRET_KEY, { expiresIn: '69y' });
       console.log(token);
-      res.status(200).json({ token, user: user._id.toString() , xId: user.xId, role: user.role[0]});
+      res.status(200).json({ token, uId: usernew._id.toString() , xId: account.xId, role: account.role[0]});
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
     }

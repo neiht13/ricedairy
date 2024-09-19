@@ -13,9 +13,11 @@ import { ObjectId } from "mongodb";
  */
 const handler = async (req, res) => {
   const data = req.body;
-  console.log("data", data);
+  const idQuery = req.query?.id;
+  const uId = req.query?.uId;
   
   const id = data?.id;
+  delete data.id;
   let result = {};
 
   try {
@@ -27,24 +29,22 @@ const handler = async (req, res) => {
         try {
         if (!id) {
           result = await collection.insertOne(data);
-          res.status(201).json(result.ops[0]);
+          res.status(201).json(result);
         } else {
           result = await collection.updateOne(
             { _id: ObjectId.createFromHexString(id) },
             { $set: data }
           );
           res.status(201).json(result);
-
           console.log(result, 'result');
-          
         }
       } catch (error) {
         res.status(500).json({ error });
       }
         break;
       case "GET":
-        if (!id) {
-          result = await collection.find({}).toArray();
+        if (!idQuery) {
+          result = await collection.find({uId: uId}).toArray();
           res.status(200).json(result);
         } else {
           result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
@@ -52,8 +52,8 @@ const handler = async (req, res) => {
         }
         break;
       case "DELETE":
-        if (id) {
-          result = await collection.deleteOne({ _id: ObjectId.createFromHexString(id) });
+        if (idQuery) {
+          result = await collection.deleteOne({ _id: ObjectId.createFromHexString(idQuery) });
           res.status(200).json(result);
         } else {
           res.status(200).end(`Provide id`);

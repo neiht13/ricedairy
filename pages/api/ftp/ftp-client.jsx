@@ -2,12 +2,18 @@ var ftp = require('basic-ftp');
 
 export async function getFtpClient() {
 	const client = new ftp.Client()
-	await client.access({
-		host: process.env.FTP_HOST,
-		user: process.env.FTP_USER,
-		password: process.env.FTP_PASS,
-		secure: false,
-	});
+	try {
+		await client.access({
+			host: process.env.FTP_HOST,
+			user: process.env.FTP_USER,
+			password: process.env.FTP_PASS,
+			secure: false,
+		});
+	} catch (error) {
+		console.log(error);
+		
+	}
+
 	// await client.access({
 	// 	host: '123.30.191.203',
 	// 	user: 'khoailangchauthanhdt',

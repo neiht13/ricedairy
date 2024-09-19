@@ -2,19 +2,10 @@ import { authMiddleware } from "../../../middleware/auth";
 import clientPromise from "../../../mongo/client";
 import { ObjectId } from "mongodb";
 
-/**
- * @swagger
- * /api/nhatky:
- *   get:
- *     description: Returns a greeting
- *     responses:
- *       200:
- *         description: Successful response
- */
 const handler = async (req, res) => {
   const data = req.body;
   const idQuery = req.query?.id;
-  console.log("data", data);
+  const uId = req.query?.uId;
   
   const id = data?.id;
   delete data.id;
@@ -44,7 +35,7 @@ const handler = async (req, res) => {
         break;
       case "GET":
         if (!idQuery) {
-          result = await collection.find({}).toArray();
+          result = await collection.find({uId: uId}).toArray();
           res.status(200).json(result);
         } else {
           result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
