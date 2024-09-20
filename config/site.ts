@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "VNPT NKCT",
+  name: "Gạo Châu Thành",
   url: "http://localhost:3000",
   ogImage: "",
   description:

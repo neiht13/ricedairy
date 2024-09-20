@@ -13,7 +13,7 @@ import {
 const groupByGiaiDoan = (items) => {
   items.sort((a, b) => {
     const parseDate = (dateStr) => {
-      const [day, month, year] = dateStr.split('/').map(Number);
+      const [day, month, year] = dateStr.split("/").map(Number);
       return new Date(year, month - 1, day);
     };
 
@@ -85,8 +85,8 @@ export default function Timeline({ nhatky }) {
                       </h1>
                     </div>
                     <Card className="order-1 w-full md:w-5/12 px-4 py-4">
-                    <div className="flex flex-col md:flex-row">
-                    <CardContent className="flex-1 p-6">
+                      <div className="flex flex-col md:flex-row">
+                        <CardContent className="flex-1 px-6 py-0">
                           <time className="mb-1 text-sm font-normal leading-none text-green-500 dark:text-gray-500">
                             {item.ngayThucHien}
                           </time>
@@ -96,22 +96,33 @@ export default function Timeline({ nhatky }) {
                           <p className="text-base font-normal text-gray-700 dark:text-gray-400">
                             {item.chiTietCongViec}
                           </p>
+                          {(item.congViec === "Bón phân" || item.congViec === "Phun thuốc") && (
+                          <p className="text-base font-normal text-gray-700 dark:text-gray-400">
+                            Liều lượng: {item.soLuongVatTu} {item.donViTinh}
+                          </p>
+                          )}
                           <div className="grid grid-cols-2">
-                            <p className="text-sm font-semibold  text-gray-700 dark:text-gray-400">
-                              <Badge variant="secondary"> Bón phân </Badge>
-                            </p>
-                            <p className="text-sm font-semibold text-gray-700 dark:text-gray-400">
-                              <Badge variant="secondary"> Phun thuốc</Badge>
-                            </p>
+                            {item.congViec === "Bón phân" && (
+                              <p className="text-sm font-semibold  text-gray-700 dark:text-gray-400">
+                                <Badge variant="secondary"> Bón phân </Badge>
+                              </p>
+                            )}
+                            {item.congViec === "Phun thuốc" && (
+                              <p className="text-sm font-semibold text-gray-700 dark:text-gray-400">
+                                <Badge variant="secondary"> Phun thuốc</Badge>
+                              </p>
+                            )}
                           </div>
                         </CardContent>
-                       { item.image && <div className="md:w-1/3">
-                          <img
-                            src={item.image}
-                            alt="Card image"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>}
+                        {item.image && (
+                          <div className="md:w-1/3">
+                            <img
+                              src={item.image}
+                              alt="Card image"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
                       </div>
                     </Card>
                   </div>

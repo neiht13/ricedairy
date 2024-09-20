@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Leaf, Menu, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import Link from "next/link"
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
 export default function Header() {
   // State để quản lý trạng thái menu di động
@@ -19,7 +20,11 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8" />
+            <img className="h-10 w-12"
+
+                src={"logo_gcc.png"}
+                alt="Logo"
+              />
             <span className="text-2xl font-bold">Nhật ký canh tác</span>
           </div>
 

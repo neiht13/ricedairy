@@ -48,7 +48,7 @@ import Header from "@/app/Header";
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,
-        template: `%s - ${siteConfig.name}`,
+        template: `%s - VNPT NKCT`,
     },
     metadataBase: new URL(siteConfig.url),
     description: siteConfig.description,

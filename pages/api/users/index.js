@@ -48,7 +48,7 @@ const handleDelete = async (req, res, collection) => {
 const handler = async (req, res) => {
   try {
     const { db } = await clientPromise;
-    const collection = db.collection("User");
+    const collection = db.collection("usernew");
 
     switch (req.method) {
       case "POST":
