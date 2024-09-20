@@ -39,7 +39,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-, "app/tl/Timeline.js", "app/tl/page.js"  ],
+,
+    "app/timeline/Timeline.js",
+    "app/timeline/page.js"
+  ],
   "exclude": [
     "node_modules",
     "./scripts/build-registry.ts"

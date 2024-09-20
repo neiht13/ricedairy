@@ -66,7 +66,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip"
 import MusicPage from "@/app/examples/music/page";
-import Timeline from "@/app/timeline/page";
+import Timeline from "@/app/timelineold/page";
 import ProfileForm from "./form";
 import {findOneMuavu} from "../actions";
 

@@ -17,7 +17,7 @@ import {
 } from "@/components/timeline";
 import Image from "next/image";
 import {fetchData} from "next-auth/client/_utils";
-import {findAll} from "@/app/timeline/actions";
+import {findAll} from "@/app/timelineold/actions";
 import {useSession} from "next-auth/react";
 export const metadata: Metadata = {
 	title: 'Timeline',
