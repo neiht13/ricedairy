@@ -117,7 +117,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
             >
                 {/*<div className="relative overflow-hidden before:absolute before:top-0 before:bg-[url('https://preline.co/assets/svg/examples/squared-bg-element.svg')]  before:bg-top before:size-full before:-z-[1] before:transform  dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/squared-bg-element.svg')]">*/}
-
+{/* 
             <SessionProvider>
                 <AuthProvider>
                 <ThemeProvider
@@ -125,7 +125,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                     defaultTheme="system"
                     enableSystem
                     disableTransitionOnChange
-                >
+                > */}
                     {/* <div vaul-drawer-wrapper=""> */}
                             {/* <SiteHeader/> */}
                         {/* <Header/> */}
@@ -135,14 +135,14 @@ export default function RootLayout({children}: RootLayoutProps) {
                             <main style={{zIndex: 10}} className="flex-1">{children}</main>
                             {/*<SiteFooter />*/}
                     {/* </div> */}
-                    <ThemeSwitcher/>
+                    {/* <ThemeSwitcher/>
                     <Analytics/>
                     <NewYorkToaster/>
                     <DefaultToaster/>
                     <NewYorkSonner/>
                 </ThemeProvider>
                 </AuthProvider>
-            </SessionProvider>
+            </SessionProvider> */}
             {/*</div>*/}
             </body>
             </html>

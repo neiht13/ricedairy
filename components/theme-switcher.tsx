@@ -6,7 +6,7 @@ import { useSelectedLayoutSegment } from "next/navigation"
 import { useConfig } from "@/hooks/use-config"
 
 export function ThemeSwitcher() {
-  const [config] = useConfig()
+  // const [config] = useConfig()
   const segment = useSelectedLayoutSegment()
 
   React.useEffect(() => {
@@ -16,11 +16,11 @@ export function ThemeSwitcher() {
       }
     })
 
-    const theme = segment === "themes" ? config.theme : null
+    const theme = segment === "themes"
     if (theme) {
       return document.body.classList.add(`theme-${theme}`)
     }
-  }, [segment, config])
+  }, [segment])
 
   return null
 }

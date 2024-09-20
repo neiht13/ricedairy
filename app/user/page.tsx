@@ -65,7 +65,6 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip"
 import MusicPage from "@/app/examples/music/page";
-import Timeline from "@/app/timeline/page";
 import ProfileForm from "@/app/user/form";
 import {useSession} from "next-auth/react";
 import {findOneUser} from "@/app/user/actions";

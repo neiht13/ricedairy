@@ -16,10 +16,11 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     // Implement your authentication logic here
     // For example, check for a valid token in localStorage
-    debugger
-    if (status === 'loading') {
-        router.push('/login');
-      }  }, []);
+    // debugger
+    // if (status === 'loading') {
+    //     router.push('/login');
+    //   } 
+     }, []);
 
   return (
     <AuthContext.Provider value={{ status }}>

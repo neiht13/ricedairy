@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      scrollBehavior: {
+        smooth: 'smooth',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

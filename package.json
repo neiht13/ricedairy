@@ -67,7 +67,6 @@
     "file-saver": "^2.0.5",
     "framer-motion": "^11.1.9",
     "geist": "^1.1.0",
-    "jotai": "^2.1.0",
     "jsonwebtoken": "^9.0.2",
     "lodash.template": "^4.5.0",
     "lucide-react": "0.288.0",
