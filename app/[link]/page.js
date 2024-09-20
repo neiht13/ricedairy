@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import {SaveAllIcon} from "lucide-react";
 import {Button} from "../../components/ui/button";
 import Notfound from "./notfound";
+import TimelinePage from "../timeline/page";
 
 const HomePage = async ({params}) => {
 	// const short = params.link;
@@ -31,7 +32,7 @@ const HomePage = async ({params}) => {
 	// }
 
 	return (
-		<Timeline/>
+		<TimelinePage/>
 	);
 };
 

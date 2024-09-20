@@ -65,7 +65,7 @@ export default function Timeline({ nhatky }) {
             <div key={giaiDoan} className="mb-12">
               {/* Tiêu đề giai đoạn */}
               <div className="flex justify-center mb-6">
-                <span className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-semibold">
+                <span className="z-20 px-4 py-2 bg-green-700 text-white rounded-full text-sm font-semibold">
                   {stageIndex + 1}. {giaiDoan}
                 </span>
               </div>
