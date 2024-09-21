@@ -117,7 +117,7 @@ export default function Timeline({ nhatky }) {
                         {item.image && (
                           <div className="md:w-1/3">
                             <img
-                              src={item.image}
+                              src={"https://gaochauthanhdt.vn/images/download/filename=" + item.image}
                               alt="Card image"
                               className="w-full h-full object-cover"
                             />

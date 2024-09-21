@@ -7,7 +7,7 @@ export function authMiddleware(handler) {
   return async (req, res) => {
     await runMiddleware(req, res, cors);
 
-    console.log(req.headers);
+    // console.log(req.headers);
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
       return res.status(401).json({ message: 'No token provided' });
