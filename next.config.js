@@ -13,6 +13,9 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  api: {
+    bodyParser: false,
+  },
   images: {
     remotePatterns: [
       {

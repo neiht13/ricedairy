@@ -24,7 +24,7 @@ const handleGet = async (req, res, collection) => {
   const idQuery = req.query?.id;
   console.log('idQuery', idQuery)
   if (idQuery) {
-    const result = await collection.findOne({ accountId: idQuery });
+    const result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
     res.status(200).json([result]);
   } else {
     const result = await collection.find({}).toArray();

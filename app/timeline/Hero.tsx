@@ -35,9 +35,12 @@ export default function Component() {
         <div className="mt-8 text-center">
         <h1 className="text-4xl font-bold mb-4">Gạo Châu Thành</h1>
         <h1 className="text-2xl font-bold mb-4">Hương Vị Truyền Thống Từ Đồng Tháp</h1>
-        <p className="text-xl text-gray-600 mb-6 md:px-32">
+        <div className='flex flex-row items-center justify-between md:px-32'>
+          <img src='/logo_gcc.png' alt='' width={100} height={100} className='m-8'/>
+          <p className="text-xl text-gray-600 mb-6">
         Khám phá Gạo Châu Thành – sản phẩm gạo chất lượng cao được trồng và chăm sóc tỉ mỉ tại những cánh đồng bạt ngàn của Đồng Tháp. Với hương thơm đặc trưng, hạt gạo mềm dẻo và dinh dưỡng phong phú, Gạo Châu Thành không chỉ là lựa chọn hoàn hảo cho bữa ăn gia đình mà còn là niềm tự hào của nông dân Châu Thành, Đồng Tháp. Hãy trải nghiệm sự khác biệt từ từng hạt gạo và mang đến những bữa cơm ấm cúng, đầy ý nghĩa cho người thân yêu của bạn.
         </p>
+        </div>
         {/* <Button size="lg">Get Started</Button> */}
       </div>
       <Card className="overflow-hidden">
