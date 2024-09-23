@@ -2,7 +2,7 @@ import Cors from 'cors';
 
 // Initialize the cors middleware
 const cors = Cors({
-  methods: ['GET', 'HEAD', 'POST', 'OPTIONS'],
+  methods: ['GET', 'HEAD', 'POST', 'OPTIONS', 'DELETE'],
   origin: '*', // Bạn có thể thay đổi thành domain cụ thể để bảo mật hơn
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
