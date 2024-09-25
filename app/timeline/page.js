@@ -24,7 +24,7 @@ export default async function TimelinePage({searchParams}) {
   return (
     <div className="space-y-8 scroll-smooth">
     <Header/>
-    <Hero/>
+    <Hero user={userR}/>
     <InfoCard user={userR}/>
     <Timeline nhatky={nhatkynew}/>
     <Contact/>

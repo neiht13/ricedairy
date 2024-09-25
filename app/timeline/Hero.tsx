@@ -11,7 +11,8 @@ const images = [
   "https://th.bing.com/th/id/R.180d15a29a33ee008e67bc14ad5c5923?rik=XZBbOLKCNM2Z1Q&pid=ImgRaw&r=0",
 ]
 
-export default function Component() {
+//@ts-ignore
+export default function Hero({user}) {
   const [currentImage, setCurrentImage] = useState(0)
 
   useEffect(() => {
@@ -33,6 +34,8 @@ export default function Component() {
   return (
     <div id='hero' className="container mx-auto px-4 py-8">
         <div className="mt-8 text-center">
+        {user?.donvihtx && <h1 className="text-xl font-bold mb-2">{user?.donvihtx}</h1>}
+        {user?.diachi && <h1 className="text-base font-bold mb-8">Địa chỉ: {user?.diachi}</h1>}
         <h1 className="text-4xl font-bold mb-4">Gạo Châu Thành</h1>
         <h1 className="text-2xl font-bold mb-4">Hương Vị Truyền Thống Từ Đồng Tháp</h1>
         <div className='flex flex-row items-center justify-between md:px-32'>

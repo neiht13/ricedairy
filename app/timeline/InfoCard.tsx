@@ -24,7 +24,7 @@ export default function InfoCard({user}) {
           <CardContent className="flex items-center space-x-4">
             <Avatar className="h-20 w-20">
               <AvatarImage
-                src={user?.image || ""}
+                src={"https://gaochauthanhdt.vn/api/images/download?filename=" + user?.image}
                 alt="User avatar"
               />
               <AvatarFallback>JD</AvatarFallback>
