@@ -16,9 +16,6 @@ export default async function TimelinePage({searchParams}) {
     let userR = await userColection.findOne({username: user});
     let nhatkynew = await nhatkyColection.find({uId: userR?._id.toString()}).toArray();
 
-  console.log('user', user);
-  console.log('userR', userR);
-  console.log('nhatky', nhatkynew);
   
 
   return (

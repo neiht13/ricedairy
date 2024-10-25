@@ -1,7 +1,5 @@
 import "@/styles/globals.css"
 import {Metadata, Viewport} from "next"
-import 'leaflet/dist/leaflet.css';
-import '@/styles/globals.css'; // Nếu bạn có file CSS toàn cục khác
 
 import {siteConfig} from "@/config/site"
 import {fontSans} from "@/lib/fonts"
@@ -47,10 +45,13 @@ import {Textarea} from "@/components/ui/textarea";
 import {Badge} from "@/components/ui/badge";
 import Header from "@/app/Header";
 
+import 'leaflet/dist/leaflet.css';
+import '@/styles/globals.css'; // Nếu bạn có file CSS toàn cục khác
+
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,
-        template: `%s - VNPT NKCT`,
+        template: `%s - ${siteConfig.name}`,
     },
     metadataBase: new URL(siteConfig.url),
     description: siteConfig.description,
@@ -119,7 +120,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
             >
                 {/*<div className="relative overflow-hidden before:absolute before:top-0 before:bg-[url('https://preline.co/assets/svg/examples/squared-bg-element.svg')]  before:bg-top before:size-full before:-z-[1] before:transform  dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/squared-bg-element.svg')]">*/}
-
+{/* 
             <SessionProvider>
                 <AuthProvider>
                 <ThemeProvider
@@ -127,7 +128,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                     defaultTheme="system"
                     enableSystem
                     disableTransitionOnChange
-                >
+                > */}
                     {/* <div vaul-drawer-wrapper=""> */}
                             {/* <SiteHeader/> */}
                         {/* <Header/> */}
@@ -137,14 +138,14 @@ export default function RootLayout({children}: RootLayoutProps) {
                             <main style={{zIndex: 10}} className="flex-1">{children}</main>
                             {/*<SiteFooter />*/}
                     {/* </div> */}
-                    <ThemeSwitcher/>
+                    {/* <ThemeSwitcher/>
                     <Analytics/>
                     <NewYorkToaster/>
                     <DefaultToaster/>
                     <NewYorkSonner/>
                 </ThemeProvider>
                 </AuthProvider>
-            </SessionProvider>
+            </SessionProvider> */}
             {/*</div>*/}
             </body>
             </html>

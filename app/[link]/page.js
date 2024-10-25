@@ -32,7 +32,8 @@ const HomePage = async ({params}) => {
 	// }
 
 	return (
-		<TimelinePage/>
+		// <TimelinePage/>
+		<Notfound/>
 	);
 };
 

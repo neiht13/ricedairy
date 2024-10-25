@@ -10,11 +10,11 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">Nhật ký canh tác</h3>
-              <p className="text-sm">Nhật ký canh tác là công cụ điện tử ghi chép chi tiết mọi hoạt động canh tác về đồng ruộng của nông dân. </p>
+              <p className="text-sm">Nhật ký canh tác là công cụ điện tử ghi chép chi tiết mọi hoạt động canh tác về cây trồng của nông dân. </p>
             </div><div>
             <p className="text-sm">Đơn vị quản lý </p>
-              <h3 className="text-lg font-semibold mb-4">HỢP TÁC XÃ HÙNG DŨNG</h3>
-              <p className="text-sm">ấp Mỹ Phước 2, xã Mỹ Quý, huyện Tháp Mười, Đồng Tháp. </p>
+              <h3 className="text-lg font-semibold mb-4">TRUNG TÂM DỊCH VỤ NÔNG NGHIỆP CHÂU THÀNH</h3>
+              <p className="text-sm">Số 147, ấp An Thạnh, Xã An Nhơn, Huyện Châu Thành, Đồng Tháp. </p>
             </div>
             {/* <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>

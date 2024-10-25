@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Gạo Châu Thành",
+  name: "Sầu riêng Hùng dũng",
   url: "http://localhost:3000",
   ogImage: "",
   description:
