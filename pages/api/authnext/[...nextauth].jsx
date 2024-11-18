@@ -16,13 +16,11 @@ export const authOptions = {
             },
 
             async authorize(credentials, req) {
-                console.log('credentials',credentials)
                 const authUser = await prisma.account.findUnique({
                     where: {
                         username: credentials?.username,
                     }
                 })
-                console.log('authUser', authUser)
 
                 if (authUser?.password === credentials?.password && authUser?.status) {
                     return authUser

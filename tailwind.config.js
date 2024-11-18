@@ -20,6 +20,9 @@ module.exports = {
       scrollBehavior: {
         smooth: 'smooth',
       },
+      transitionProperty: {
+        'max-height': 'max-height',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -81,5 +84,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/line-clamp'),
+
+  ],
 }

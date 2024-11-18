@@ -24,14 +24,11 @@ export default function Contact() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState<{
-    type: "success" | "error";
-    message: string;
-  } | null>(null);
+  const [feedback, setFeedback] = useState(null);
 
   // Hàm xử lý thay đổi input
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -41,7 +38,7 @@ export default function Contact() {
   };
 
   // Hàm xử lý gửi form
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setFeedback(null);

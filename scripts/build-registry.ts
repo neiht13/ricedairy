@@ -427,4 +427,3 @@ for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone"]) {
   )
 }
 
-console.log("✅ Done!")

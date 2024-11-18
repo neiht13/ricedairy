@@ -43,7 +43,7 @@ export default function Timeline({ nhatky }) {
         <div className="grid grid-cols-3">
           <div></div>
           <h2 className="text-3xl font-bold text-center">Nhật ký canh tác</h2>
-          <div className=" bg-white rounded-xl">
+          {/* <div className=" bg-white rounded-xl">
             <Select>
               <SelectTrigger aria-label="Pronoun">
                 <SelectValue placeholder="Chọn mùa vụ" />
@@ -57,7 +57,7 @@ export default function Timeline({ nhatky }) {
                 </SelectGroup>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
         </div>
         <div className="relative wrap overflow-hidden p-4 md:p-10 h-full">
           <div className="border-2-2 absolute border-opacity-20 border-gray-700 h-full border left-[15px] md:left-1/2"></div>

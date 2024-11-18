@@ -35,14 +35,12 @@
   },
   "include": [
     "next-env.d.ts",
+    "**/*.js",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated"
-,
-    "app/timeline/Timeline.js",
-    "app/timeline/page.js"
-  ],
+    ".contentlayer/generated",
+    ],
   "exclude": [
     "node_modules",
     "./scripts/build-registry.ts"

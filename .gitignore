@@ -7,3 +7,4 @@ dist
 build
 .contentlayer
 package-lock.json  
+.vercel

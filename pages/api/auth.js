@@ -7,41 +7,6 @@ import {ObjectId} from "mongodb";
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
-/**
- * @swagger
- * /api/auth:
- *   post:
- *     description: Create a new user with username and password.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 example: "johndoe"
- *               password:
- *                 type: string
- *                 example: "password123"
- *     responses:
- *       201:
- *         description: User created successfully.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: integer
- *                   example: 1
- *                 username:
- *                   type: string
- *                   example: "johndoe"
- *       400:
- *         description: Invalid input, object invalid.
- */
 export default async function handler(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors);
@@ -73,6 +38,10 @@ export default async function handler(req, res) {
     const account = await acocuntdb.findOne(whereClause);
 
     const usernew = await userdb.findOne({accountId: account._id.toString()});
+
+    console.log('account._id.toString()', account._id.toString());
+    console.log('usernew', usernew);
+    console.log('account', account);
 
   // Giả sử username và password đúng
     if (account && password === account.password) {

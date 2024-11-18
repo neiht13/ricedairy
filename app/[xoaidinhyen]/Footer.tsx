@@ -5,7 +5,7 @@ import { Leaf, Menu, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-re
 export default function Footer() {
   return (
 
-      <footer className="bg-green-900 text-white">
+      <footer className="bg-yellow-600 text-white">
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -13,8 +13,8 @@ export default function Footer() {
               <p className="text-sm">Nhật ký canh tác là công cụ điện tử ghi chép chi tiết mọi hoạt động canh tác về đồng ruộng của nông dân. </p>
             </div><div>
             <p className="text-sm">Đơn vị quản lý </p>
-              <h3 className="text-lg font-semibold mb-4">TRUNG TÂM DỊCH VỤ NÔNG NGHIỆP CHÂU THÀNH</h3>
-              <p className="text-sm">Số 147, ấp An Thạnh, Xã An Nhơn, Huyện Châu Thành, Đồng Tháp. </p>
+              <h3 className="text-lg font-semibold mb-4">Hợp tác xã Xoài Bình An</h3>
+              <p className="text-sm">Xã Tân Phú, Huyện Châu Thành, Đồng Tháp. </p>
             </div>
             {/* <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>

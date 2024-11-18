@@ -19,14 +19,14 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <img className="h-10 w-12"
 
                 src={"logo_gcc.png"}
                 alt="Logo"
               />
             <span className="text-2xl font-bold">Nhật ký canh tác</span>
-          </div>
+          </div> */}
 
           {/* Navigation dành cho màn hình lớn */}
           <nav className="hidden md:flex space-x-6">

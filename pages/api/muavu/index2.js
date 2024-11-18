@@ -20,7 +20,6 @@ const handler = async (req, res) => {
           });
           res.status(201).json(result);
         }
-        console.log(result, 'result');
         
         break;
       case "GET":

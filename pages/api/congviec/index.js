@@ -22,6 +22,7 @@ const handler = async (req, res) => {
 
   try {
     const { db} = await clientPromise;
+    // const collection = db.collection("CongviecXoai");
     const collection = db.collection("congviecnew");
 
     switch (req.method) {

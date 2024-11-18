@@ -208,7 +208,6 @@ const columns = [
 
 // @ts-ignore
 const onDelete= async (record)=> {
-  console.log(record)
   await axios.delete('/api/link?id='+record?.original?.id)
     .then(function (response) {
       toast({

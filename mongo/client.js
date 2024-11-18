@@ -14,8 +14,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const dbName = new URL(process.env.MONGODB_URI).pathname.replace(/^\/+/, '');
-console.log("dbName", dbName);
-
+  
 if (process.env.NODE_ENV === "development") {
   // In development mode, use a global variable so the MongoClient is not repeatedly instantiated.
   if (!global._mongoClientPromise) {

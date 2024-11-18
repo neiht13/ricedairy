@@ -2,19 +2,11 @@ import { authMiddleware } from "../../../middleware/auth";
 import clientPromise from "../../../mongo/client";
 import { ObjectId } from "mongodb";
 
-/**
- * @swagger
- * /api/nhatky:
- *   get:
- *     description: Returns a greeting
- *     responses:
- *       200:
- *         description: Successful response
- */
 const handler = async (req, res) => {
   const data = req.body;
   const idQuery = req.query?.id;
   const uId = req.query?.uId;
+  const farmingLogId = req.query?.farmingLogId;
   
 
   
@@ -26,7 +18,7 @@ const handler = async (req, res) => {
 
   try {
     const { db} = await clientPromise;
-    const collection = db.collection("muavunew");
+    const collection = db.collection("agrochemicals");
 
     switch (req.method) {
       case "POST":
@@ -36,11 +28,11 @@ const handler = async (req, res) => {
           result = await collection.insertOne(data);
           res.status(201).json(result);
         } else {
-
+       
           result = await collection.updateOne(
             { _id: ObjectId.createFromHexString(id) },
             { $set: data }
-          );
+          );``
           res.status(201).json(result);
         }
       } catch (error) {
@@ -49,19 +41,25 @@ const handler = async (req, res) => {
         break;
       case "GET":
         if (!idQuery) {
-          result = await collection.find({uId: uId}).toArray();
-          res.status(200).json(result);
+          if (farmingLogId) {
+            result = await collection.find({ farmingLogId: farmingLogId }).toArray();
+            res.status(200).json(result);
+          } else {
+            res.status(500).json("Provide farmingLogId")
+          }
+        
         } else {
           result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
-          res.status(200).json(result);
+          res.status(404).json(result);
         }
+        
         break;
       case "DELETE":
         if (idQuery) {
           result = await collection.deleteOne({ _id: ObjectId.createFromHexString(idQuery) });
           res.status(200).json(result);
         } else {
-          res.status(200).end(`Provide id`);
+          res.status(404).end(`Provide id`);
         }
         break;
       default:
