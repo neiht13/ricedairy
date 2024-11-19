@@ -112,7 +112,7 @@ export default function RootLayout({children}: RootLayoutProps) {
             <html lang="en" suppressHydrationWarning>
             <head/>
             <body
-                className={cn(
+                className={cn(  
                     "min-h-screen overflow-y-scroll font-sans antialiased",
                     fontSans
                 )}

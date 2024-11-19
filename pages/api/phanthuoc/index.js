@@ -42,7 +42,7 @@ const handler = async (req, res) => {
       case "GET":
         if (!idQuery) {
           if (farmingLogId) {
-            result = await collection.find({ farmingLogId: farmingLogId }).toArray();
+            result = await collection.find({ farmingLogId:  ObjectId.createFromHexString(farmingLogId) }).toArray();
             res.status(200).json(result);
           } else {
             res.status(500).json("Provide farmingLogId")
