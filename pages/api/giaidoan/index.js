@@ -14,6 +14,7 @@ import { ObjectId } from "mongodb";
 const handler = async (req, res) => {
   const data = req.body;
   const idQuery = req.query?.id;
+  const uId = req.query?.uId;
   console.log("data", data);
 
   const id = data?.id;
@@ -47,7 +48,11 @@ const handler = async (req, res) => {
         if (!idQuery) {
           result = await collection.find({}).toArray();
           res.status(200).json(result);
-        } else {
+        } else if(uId) {
+          result = await collection.find({ uId: uId }).toArray();
+          res.status(200).json(result);
+        }
+        else {
           result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
           res.status(200).json(result);
         }
