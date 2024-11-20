@@ -45,11 +45,11 @@ const handler = async (req, res) => {
         }
         break;
       case "GET":
-        if (!idQuery) {
-          result = await collection.find({}).toArray();
-          res.status(200).json(result);
-        } else if(uId) {
+        if(!idQuery && uId) {
           result = await collection.find({ uId: uId }).toArray();
+          if (result.length === 0) {
+            result = await collection.find({}).toArray();
+          }
           res.status(200).json(result);
         }
         else {
