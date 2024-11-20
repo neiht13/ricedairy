@@ -44,19 +44,19 @@ const handler = async (req, res) => {
           res.status(500).json({ error });
         }
         break;
-      case "GET":
-        if(!idQuery && uId) {
-          result = await collection.find({ uId: uId }).toArray();
-          if (result.length === 0) {
-            result = await collection.find({}).toArray();
+        case "GET":
+          if (idQuery) {
+            result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
+          } else if (uId) {
+            result = await collection.find({ uId: uId }).toArray();
+            if (result.length === 0) {
+              result = await collection.find({ uId: { $exists: false } }).toArray();
+            }
+          } else {
+            result = await collection.find({ uId: { $exists: false } }).toArray();
           }
           res.status(200).json(result);
-        }
-        else {
-          result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
-          res.status(200).json(result);
-        }
-        break;
+          break;
       case "DELETE":
         if (idQuery) {
           result = await collection.deleteOne({ _id: ObjectId.createFromHexString(idQuery) });
