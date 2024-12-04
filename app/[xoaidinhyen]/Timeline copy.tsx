@@ -75,7 +75,7 @@ export default function Timeline() {
             <div key={giaiDoan} className="mb-12">
               {/* Tiêu đề giai đoạn */}
               <div className="flex justify-center mb-6">
-                <span className="px-4 py-2 bg-yellow-600 text-white rounded-full text-sm font-semibold">
+                <span className="px-4 py-2 bg-green-800 text-white rounded-full text-sm font-semibold">
                   {giaiDoan}
                 </span>
               </div>
@@ -91,7 +91,7 @@ export default function Timeline() {
                   <div className="hidden md:block w-5/12"></div>
 
                   {/* Icon */}
-                  <div className="z-20 flex items-center left-4 order-1 bg-yellow-600 shadow-xl w-12 h-12 rounded-full">
+                  <div className="z-20 flex items-center left-4 order-1 bg-green-800 shadow-xl w-12 h-12 rounded-full">
                     {item.icon}
                   </div>
 

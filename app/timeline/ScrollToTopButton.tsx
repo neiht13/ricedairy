@@ -35,7 +35,7 @@ export default function ScrollToTopButton() {
       {isVisible && (
         <Button 
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-yellow-600 text-white p-3 rounded-full shadow-lg hover:bg-yellow-600 transition-colors duration-300 z-50"
+          className="fixed bottom-6 right-6 bg-green-800 text-white p-3 rounded-full shadow-lg hover:bg-green-800 transition-colors duration-300 z-50"
           aria-label="Cuộn lên đầu trang"
         >
           <ArrowUp className="h-5 w-5" />

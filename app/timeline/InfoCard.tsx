@@ -59,7 +59,6 @@ export default function InfoCard({user}) {
                   Chứng nhận nông sản sạch, an toàn theo tiêu chuẩn của tổ chức.
                 </p>
                 <div className="mt-2">
-                  <Badge variant="secondary">HTML5</Badge>
                   <Badge variant="secondary" className="ml-2">
                     ST25
                   </Badge>

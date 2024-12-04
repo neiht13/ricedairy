@@ -15,7 +15,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-yellow-600 text-white fixed top-0 left-0 w-full z-50 shadow-md">
+    <header className="bg-green-800 text-white fixed top-0 left-0 w-full z-50 shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -39,7 +39,7 @@ export default function Header() {
 
           {/* Nút Get Started dành cho màn hình lớn
           <div className="hidden md:block">
-            <Button variant="outline" className="text-white border-white hover:bg-yellow-600 transition-colors duration-200">
+            <Button variant="outline" className="text-white border-white hover:bg-green-800 transition-colors duration-200">
               Get Started
             </Button>
           </div> */}
@@ -58,7 +58,7 @@ export default function Header() {
 
       {/* Menu di động */}
       <div 
-        className={`md:hidden px-4 py-2 bg-yellow-600 transition-transform duration-300 ease-in-out ${
+        className={`md:hidden px-4 py-2 bg-green-800 transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >

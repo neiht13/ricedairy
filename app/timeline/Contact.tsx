@@ -212,7 +212,7 @@ export default function Contact() {
             {/* Nút gửi */}
             <Button
               type="submit"
-              className="w-full bg-yellow-600 hover:bg-green-600 text-white"
+              className="w-full bg-green-800 hover:bg-green-600 text-white"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Đang gửi..." : "Gửi thông tin"}

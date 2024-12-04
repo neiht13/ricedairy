@@ -13,7 +13,7 @@ if (!process.env.MONGODB_URI) {
   throw new Error("Please add your Mongo URI to .env.local");
 }
 
-const dbName = new URL(process.env.MONGODB_URI).pathname.replace(/^\/+/, '');
+const dbName = new URL(process.env.MONGODB_URI);
   
 if (process.env.NODE_ENV === "development") {
   // In development mode, use a global variable so the MongoClient is not repeatedly instantiated.

@@ -5,7 +5,7 @@ import { Leaf, Menu, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-re
 export default function Footer() {
   return (
 
-      <footer className="bg-yellow-600 text-white">
+      <footer className="bg-green-800 text-white">
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -37,8 +37,8 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
               <form className="flex flex-col space-y-2">
-                <Input type="email" placeholder="Your email" className="bg-yellow-600 border-green-700 text-white placeholder-green-400" />
-                <Button variant="outline" className="text-white border-white hover:bg-yellow-600">Subscribe</Button>
+                <Input type="email" placeholder="Your email" className="bg-green-800 border-green-700 text-white placeholder-green-400" />
+                <Button variant="outline" className="text-white border-white hover:bg-green-800">Subscribe</Button>
               </form>
               <div className="flex space-x-4 mt-4">
                 <a href="#" className="hover:text-green-300"><Facebook className="h-5 w-5" /></a>

@@ -12,11 +12,11 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Nhật ký canh tác</h3>
               <p className="text-sm">Nhật ký canh tác là công cụ điện tử ghi chép chi tiết mọi hoạt động canh tác về đồng ruộng của nông dân. </p>
             </div><div>
-            <p className="text-sm">Đơn vị quản lý </p>
+            <p className="text-sm col-span-2">Đơn vị quản lý </p>
               {/* <h3 className="text-lg font-semibold mb-4">TRUNG TÂM DỊCH VỤ NÔNG NGHIỆP CHÂU THÀNH</h3>
               <p className="text-sm">Số 147, ấp An Thạnh, Xã An Nhơn, Huyện Châu Thành, Đồng Tháp. </p> */}
-             <h3 className="text-lg font-semibold mb-4">SẦU RIÊNG HÙNG DŨNG</h3>
-              <p className="text-sm">ấp Mỹ Phước 2, xã Mỹ Quý, huyện Tháp Mười, Đồng Tháp. </p>
+             <h3 className="text-lg font-semibold mb-4">Phòng Nông nghiệp huyện Tam Nông</h3>
+              <p className="text-sm">TT. Tràm Chim, Tam Nông, Đồng Tháp </p>
             </div>
             {/* <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
@@ -39,8 +39,8 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
               <form className="flex flex-col space-y-2">
-                <Input type="email" placeholder="Your email" className="bg-yellow-600 border-green-700 text-white placeholder-green-400" />
-                <Button variant="outline" className="text-white border-white hover:bg-yellow-600">Subscribe</Button>
+                <Input type="email" placeholder="Your email" className="bg-green-800 border-green-700 text-white placeholder-green-400" />
+                <Button variant="outline" className="text-white border-white hover:bg-green-800">Subscribe</Button>
               </form>
               <div className="flex space-x-4 mt-4">
                 <a href="#" className="hover:text-green-300"><Facebook className="h-5 w-5" /></a>
