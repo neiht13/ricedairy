@@ -16,6 +16,7 @@ const handler = async (req, res) => {
   const data = req.body;
   const idQuery = req.query?.id;
   const xId = req.query?.xId;
+  const uId = req.query?.uId;
   console.log("xId", xId);
 
   const id = data?.id;
@@ -46,20 +47,11 @@ const handler = async (req, res) => {
         }
         break;
       case "GET":
-        if (idQuery) {
-          result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
-          res.status(200).json(result);
-        } else if(xId){
-          result = await collection.find(
-            {xId: xId}
-            , {sort: {giaidoan: 1}}
-          ).toArray();
-          console.log(result);
-          
-          res.status(200).json(result);
-        } 
-        else {
+        if (!idQuery) {
           result = await collection.find({}).toArray();
+          res.status(200).json(result);
+        } else {
+          result = await collection.findOne({ _id: ObjectId.createFromHexString(idQuery) });
           res.status(200).json(result);
         }
         break;

@@ -1,7 +1,7 @@
 // components/Contact.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -29,6 +29,23 @@ export default function Contact() {
     message: string;
   } | null>(null);
 
+  // Quản lý CAPTCHA
+  const [captchaQuestion, setCaptchaQuestion] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+
+  // Hàm lấy câu hỏi CAPTCHA khi component được mount
+  useEffect(() => {
+    const fetchCaptcha = async () => {
+      const response = await fetch("/api/generateCaptcha");
+      const data = await response.json();
+      setCaptchaQuestion(data.question);
+      setCaptchaToken(data.token);
+    };
+
+    fetchCaptcha();
+  }, []);
+
   // Hàm xử lý thay đổi input
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -40,6 +57,11 @@ export default function Contact() {
     }));
   };
 
+  // Hàm xử lý thay đổi CAPTCHA
+  const handleCaptchaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCaptchaAnswer(e.target.value);
+  };
+
   // Hàm xử lý gửi form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,9 +69,41 @@ export default function Contact() {
     setFeedback(null);
 
     try {
-      sendContact(formData);
+      // Gọi server action với dữ liệu form và CAPTCHA
+      const result = await sendContact({
+        ...formData,
+        captchaToken,
+        captchaAnswer: Number(captchaAnswer),
+      });
+
+      if (result && result.success) {
+        setFeedback({
+          type: "success",
+          message: "Thông tin của bạn đã được gửi thành công.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setCaptchaAnswer("");
+        // Tải lại CAPTCHA mới
+        const response = await fetch("/api/generateCaptcha");
+        const data = await response.json();
+        setCaptchaQuestion(data.question);
+        setCaptchaToken(data.token);
+      } else {
+        setFeedback({
+          type: "error",
+          message: result?.message || "Đã xảy ra lỗi. Vui lòng thử lại.",
+        });
+        // Tải lại CAPTCHA mới nếu xác minh thất bại
+        const response = await fetch("/api/generateCaptcha");
+        const data = await response.json();
+        setCaptchaQuestion(data.question);
+        setCaptchaToken(data.token);
+      }
     } catch (error) {
-      setFeedback({ type: "error", message: "Đã xảy ra lỗi khi gửi liên hệ." });
+      setFeedback({
+        type: "error",
+        message: "Đã xảy ra lỗi khi gửi thông tin. Vui lòng thử lại.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -62,10 +116,12 @@ export default function Contact() {
     >
       <Card className="w-full max-w-md mx-4">
         <CardTitle className="text-2xl pt-8 pl-8">Liên hệ</CardTitle>
-        <CardDescription className="pl-8 pb-8">Để lại thông tin liên hệ cần hỗ trợ. </CardDescription>
+        <CardDescription className="pl-8 pb-8">
+          Để lại thông tin liên hệ cần hỗ trợ.
+        </CardDescription>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Ông/bà */}
+            {/* Họ và tên */}
             <div className="space-y-2">
               <Label htmlFor="name">Ông/Bà</Label>
               <Input
@@ -100,7 +156,7 @@ export default function Contact() {
                 name="phone"
                 placeholder="Nhập số điện thoại"
                 type="tel"
-                pattern="[0-9]{10,15}" // Thêm regex để kiểm tra số điện thoại
+                pattern="[0-9]{10,15}"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -121,7 +177,26 @@ export default function Contact() {
               />
             </div>
 
-            {/* Phản hồi người dùng */}
+            {/* CAPTCHA */}
+            <div className="space-y-2">
+              <Label htmlFor="captcha">Xác minh CAPTCHA</Label>
+              <div className="grid grid-cols-2 gap-4 items-center justify-center ">
+                <span className="mr-4 flex justify-center">{captchaQuestion}</span>
+                <Input
+                  id="captcha"
+                  name="captcha"
+                  placeholder="Nhập đáp án"
+                  type="text"
+                  value={captchaAnswer}
+                  onChange={handleCaptchaChange}
+                  required
+                />
+              </div>
+              {/* Lưu trữ token CAPTCHA */}
+              <input type="hidden" name="captchaToken" value={captchaToken} />
+            </div>
+
+            {/* Phản hồi */}
             {feedback && (
               <div
                 className={`p-4 rounded ${

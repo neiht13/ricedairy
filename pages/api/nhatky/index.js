@@ -129,9 +129,8 @@ const syncAgrochemicals = async (incomingAgrochemicals, farmingLogId) => {
   const existingIds = existingAgrochemicals.map(agro => agro._id);
 
   // Các agrochemicals cần xóa (tồn tại trong DB nhưng không trong incoming data)
-  const toDelete = existingIds.filter(id => 
-    !incomingIds.some(incomingId => id.equals(incomingId))
-  );
+  const toDelete = existingIds.filter(id => !incomingIds.includes(id));
+
   // Xóa các agrochemicals không còn tồn tại trong incoming data
   if (toDelete.length > 0) {
      await collectionAgrochemicals.deleteMany({ _id: { $in: toDelete } });
