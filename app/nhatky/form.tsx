@@ -21,8 +21,8 @@ import prisma from "@/prisma/prisma";
 import {createNhatky} from "@/app/nhatky/actions";
 import {FileUploader, FileUploaderContent, FileUploaderItem} from "@/components/ui/file-uploader";
 import {FileInput} from "lucide-react";
-import {findAll} from "@/app/thongtinchung/giaidoan/actions";
-import {findAllCongviec, findAllMuavu} from "@/app/thongtinchung/muavu/actions";
+// import {findAll} from "@/app/thongtinchung/giaidoan/actions";
+// import {findAllCongviec, findAllMuavu} from "@/app/thongtinchung/muavu/actions";
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
@@ -43,12 +43,12 @@ const ProfileForm = ({data}) =>{
 	const [giaidoanId, setGiaidoanId] = useState('')
 
 	const fetchData = async () => {
-		const g = await findAll();
-		setGiaidoan(g)
-		const m = await findAllMuavu();
-		setMuavu(m)
-		const c = await findAllCongviec();
-		setCongviecList(c)
+		// const g = await findAll();
+		// setGiaidoan(g)
+		// const m = await findAllMuavu();
+		// setMuavu(m)
+		// const c = await findAllCongviec();
+		// setCongviecList(c)
 	}
 	useEffect(() => {
 		fetchData()

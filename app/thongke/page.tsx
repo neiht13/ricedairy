@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { findAll } from "@/app/timelineold/actions";
+// import { findAll } from "@/app/timelineold/actions";
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,8 +11,8 @@ const TimelinePage = () => {
     const { data: session, status } = useSession();
 
     const fetchData = async () => {
-        const d = status === 'authenticated' && await findAll(session?.user?.username) || [];
-        setData(d);
+        // const d = status === 'authenticated' && await findAll(session?.user?.username) || [];
+        // setData(d);
     };
 
     useEffect(() => {
