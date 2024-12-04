@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "development") {
     client = new MongoClient(uri, options);
     global._mongoClientPromise = client.connect().then(client => ({
       client,
-      db: client.db('nkdongruongtamnong')
+      db: client.db('nksx')
     }));
   }
   clientPromise = global._mongoClientPromise;
