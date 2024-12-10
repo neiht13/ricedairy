@@ -37,18 +37,18 @@ export default function Hero({user}) {
         <div className="mt-8 text-center">
         {user?.donvihtx && <h1 className="text-xl font-bold mb-2">{user?.donvihtx}</h1>}
         {user?.diachi && <h1 className="text-base font-bold mb-8">Địa chỉ: {user?.diachi}</h1>}
-        {/* <h1 className="text-4xl font-bold mb-4">Gạo Tam Nông</h1>
-        <h1 className="text-2xl font-bold mb-4">Hương vị truyền thống Từ Đồng ruộng Tam Nông</h1>
+        {/* <h1 className="text-4xl font-bold mb-4">Gạo Châu Thành</h1>
+        <h1 className="text-2xl font-bold mb-4">Hương vị truyền thống Từ Đồng ruộng Châu Thành</h1>
         <div className='flex flex-row items-center justify-between md:px-32'>
           <p className="text-xl text-gray-600 mb-6">
           Sầu riêng Hùng Dũng là thương hiệu nổi tiếng tại huyện Tháp Mười, tỉnh Đồng Tháp, Việt Nam, được trồng trên vùng đất phù sa màu mỡ với phương pháp canh tác hữu cơ đảm bảo chất lượng cao. Sản phẩm Hùng Dũng nổi bật với hương vị ngọt thanh, mùi thơm đặc trưng và đa dạng các giống như thốt nốt, mè, tao, đáp ứng sở thích của nhiều người tiêu dùng. Thương hiệu này không chỉ góp phần phát triển kinh tế địa phương mà còn quảng bá hình ảnh sầu riêng Đồng Tháp ra thị trường trong nước và quốc tế.
 </p> */}
         
-        <h1 className="text-4xl font-bold mb-4">{user?.tensp || "Gạo Tam Nông"}</h1>
+        <h1 className="text-4xl font-bold mb-4">{user?.tensp || "Gạo Châu Thành"}</h1>
         <h1 className="text-2xl font-bold mb-4">{user?.description || "Hương Vị Truyền Thống Từ Đồng Tháp"}</h1>
         <div className='flex flex-row items-center justify-between md:px-32'>
           <p className="text-xl text-gray-600 mb-6">{user?.details ||
-        'Khám phá Gạo Tam Nông – sản phẩm gạo chất lượng cao được trồng và chăm sóc tỉ mỉ tại những cánh đồng bạt ngàn của Đồng Tháp. Với hương thơm đặc trưng, hạt gạo mềm dẻo và dinh dưỡng phong phú, Gạo Tam Nông không chỉ là lựa chọn hoàn hảo cho bữa ăn gia đình mà còn là niềm tự hào của nông dân Tam Nông, Đồng Tháp. Hãy trải nghiệm sự khác biệt từ từng hạt gạo và mang đến những bữa cơm ấm cúng, đầy ý nghĩa cho người thân yêu của bạn.'}
+        'Khám phá Gạo Châu Thành – sản phẩm gạo chất lượng cao được trồng và chăm sóc tỉ mỉ tại những cánh đồng bạt ngàn của Đồng Tháp. Với hương thơm đặc trưng, hạt gạo mềm dẻo và dinh dưỡng phong phú, Gạo Châu Thành không chỉ là lựa chọn hoàn hảo cho bữa ăn gia đình mà còn là niềm tự hào của nông dân Châu Thành, Đồng Tháp. Hãy trải nghiệm sự khác biệt từ từng hạt gạo và mang đến những bữa cơm ấm cúng, đầy ý nghĩa cho người thân yêu của bạn.'}
         </p>
         </div> 
         {/* <Button size="lg">Get Started</Button> */}

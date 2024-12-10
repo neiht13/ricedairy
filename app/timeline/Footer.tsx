@@ -15,8 +15,8 @@ export default function Footer() {
             <p className="text-sm col-span-2">Đơn vị quản lý </p>
               {/* <h3 className="text-lg font-semibold mb-4">TRUNG TÂM DỊCH VỤ NÔNG NGHIỆP CHÂU THÀNH</h3>
               <p className="text-sm">Số 147, ấp An Thạnh, Xã An Nhơn, Huyện Châu Thành, Đồng Tháp. </p> */}
-             <h3 className="text-lg font-semibold mb-4">Phòng Nông nghiệp huyện Tam Nông</h3>
-              <p className="text-sm">TT. Tràm Chim, Tam Nông, Đồng Tháp </p>
+             <h3 className="text-lg font-semibold mb-4">Trung Tâm Dịch Vụ Nông Nghiệp Huyện Châu Thành</h3>
+              <p className="text-sm">11 QL80, An Nhơn, Châu Thành, Đồng Tháp </p>
             </div>
             {/* <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
